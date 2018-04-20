@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl && \
 # wix
 RUN apt-get update && apt-get install -y --no-install-recommends curl bsdtar && \
     mkdir -p /opt/wix/bin && \
+    curl -kSL https://github.com/Wintellect/Paraffin/releases/download/3.7.1/Paraffin.zip | \
+    bsdtar -C /opt/wix/bin -xf - && \
     curl -kSL https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip | \
     bsdtar -C /opt/wix/bin -xf - && sh /tmp/exelink.sh /opt/wix/bin && rm -f /tmp/exelink.sh && \
     apt-get purge -y --auto-remove --purge curl bsdtar && apt-get clean && \
